@@ -28,6 +28,7 @@ public class UserDto implements Serializable {
     @NotNull
     private String password;
 
+    @NotNull
     private Boolean isActive;
 
     @NotNull

@@ -21,6 +21,7 @@ public class SubscriptionDto implements Serializable {
     @NotNull
     private Long userId;
 
+    @NotNull
     private Boolean isActive;
 
     @NotNull
