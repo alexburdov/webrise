@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="Load_data_to_users_table" author="BurdovitsinAS" created="08.05.2025">
+        <comment>insert queries</comment>
+        <sql dbms="postgresql"
+             splitStatements="true"
+             stripComments="true">
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (1, 'one', 'password', TRUE, '_one_', 'one_', '_one');
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (2, 'two', 'password', TRUE, '_two_', 'two_', '_two');
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (3, 'three', 'password', TRUE, '_three_', 'three_', '_three');
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (4, 'four', 'password', TRUE, '_four_', 'four_', '_four');
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (5, 'five', 'password', FALSE, '_five_', 'five_', '_five');
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (6, 'six', 'password', TRUE, '_six_', 'six_', null);
+            insert into users (id, login, password, is_active, name, surname, patronymic) values (7, 'seven', 'password', TRUE, '_seven_', 'seven_', '_seven');
+        </sql>
+    </changeSet>
+
+    <changeSet id="Load_data_to_subscriptions_table" author="BurdovitsinAS" created="08.05.2025">
+        <comment>insert queries</comment>
+        <sql dbms="postgresql"
+             splitStatements="true"
+             stripComments="true">
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (1, 1, TRUE, '_one_one_1', '_one_one_1', 'url_one_one_1');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (2, 1, TRUE, '_one_one_1', '_one_one_2', 'url_one_one_2');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (3, 1, FALSE, '_one_one_1', '_one_one_3', 'url_one_one_3');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (4, 1, TRUE, '_one_one_1', '_one_one_4', 'url_one_one_4');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (5, 1, TRUE, '_one_one_1', '_one_one_5', 'url_one_one_5');
+
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (6, 2, TRUE, '_two_one_1', '_one_two_1', 'url_one_two_1');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (7, 2, TRUE, '_two_one_2', '_one_two_2', 'url_one_two_2');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (8, 2, TRUE, '_two_one_3', '_one_two_3', 'url_one_two_3');
+
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (9, 3, TRUE, '_three_one_1', '_one_three_1', 'url_one_three_1');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (10, 3, FALSE, '_three_one_2', '_one_three_2', 'url_one_three_2');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (11, 3, TRUE, '_three_one_3', '_one_three_3', 'url_one_three_3');
+
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (12, 4, TRUE, '_four_one_1', '_one_four_1', 'url_four_one_1');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (13, 4, TRUE, '_four_one_1', '_four_one_2', 'url_one_four_2');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (14, 4, TRUE, '_four_one_1', '_one_four_3', 'url_one_four_3');
+
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (15, 5, TRUE, '_five_one_1', '_one_five_1', 'url_five_one_1');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (16, 5, FALSE, '_five_one_1', '_one_five_2', 'url_one_five_2');
+
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (17, 6, TRUE, '_six_one_1', '_six_one_1', 'url_osix_one_1');
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (18, 6, TRUE, '_six_one_1', '_six_one_2', 'url_six_one_2');
+
+            insert into subscriptions (id, user_id, is_active, name, description, url) values (19, 7, TRUE, '_seven_one_1', '_seven_one_1', 'url_seven_one_1');
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="Create_users_table" author="BurdovitsinAS" created="08.05.2025">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+        <createTable tableName="users" remarks="Таблица пользователей">
+            <column name="ID" type="BIGINT" autoIncrement="true" remarks="ID пользователя">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="LOGIN" type="VARCHAR(50)" remarks="Login пользователя">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="PASSWORD" type="VARCHAR(50)" remarks="Пароль пользователя">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="FALSE" remarks="Если пользователь активен?"/>
+
+            <column name="NAME" type="VARCHAR(100)" remarks="Имя">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="SURNAME" type="VARCHAR(100)" remarks="Фамилия">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="PATRONYMIC" type="VARCHAR(100)" remarks="Отчество"/>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="Create_subscriptions_table" author="BurdovitsinAS" created="08.05.2025">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="subscriptions"/>
+            </not>
+        </preConditions>
+        <createTable tableName="subscriptions" remarks="Таблица подписок">
+            <column name="ID" type="BIGINT" autoIncrement="true" remarks="ID подписки">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="USER_ID" type="BIGINT" remarks="ID пользователя">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="IS_ACTIVE" type="BOOLEAN" defaultValue="TRUE" remarks="Подписка активна?"/>
+
+            <column name="NAME" type="VARCHAR(100)" remarks="Наименование подписки">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="DESCRIPTION" type="VARCHAR(1000)" remarks="Описание подписки"/>
+
+            <column name="URL" type="VARCHAR(300)" remarks="URL подписки"> <!-- Или сервис ID из списка сервисов -->
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
