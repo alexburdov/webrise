@@ -1,6 +1,7 @@
 package ru.alex.burdovitsin.webrise.service.impl;
 
 import org.springframework.stereotype.Service;
+import ru.alex.burdovitsin.webrise.exception.SubscriptionNotFoundException;
 import ru.alex.burdovitsin.webrise.exception.UserNotFoundException;
 import ru.alex.burdovitsin.webrise.mappers.SubscriptionMapper;
 import ru.alex.burdovitsin.webrise.model.jpa.Subscription;
@@ -23,7 +24,9 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     private final SubscriptionMapper subscriptionMapper;
 
-    public SubscriptionServiceImpl(UserRepository userRepository, SubscriptionRepository subscriptionRepository, SubscriptionMapper subscriptionMapper) {
+    public SubscriptionServiceImpl(UserRepository userRepository
+            , SubscriptionRepository subscriptionRepository, SubscriptionMapper subscriptionMapper
+    ) {
         this.userRepository = userRepository;
         this.subscriptionRepository = subscriptionRepository;
         this.subscriptionMapper = subscriptionMapper;
@@ -51,9 +54,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
     @Override
     public List<SubscriptionDto> deleteUsersSubscription(Long userId, Long subscriptionId) {
+        Subscription subscription = subscriptionRepository.findById(subscriptionId).orElseThrow(() -> new SubscriptionNotFoundException(subscriptionId));
+        if (Objects.equals(subscription.getUserId(), userId)) {
+            subscriptionRepository.delete(subscription);
+        }
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        user.getSubscriptions().removeIf(i -> i.getUserId() == subscriptionId);
-        user = userRepository.save(user);
         return subscriptionMapper.toDtos(user.getSubscriptions());
     }
 

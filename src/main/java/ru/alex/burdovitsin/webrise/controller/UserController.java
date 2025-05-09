@@ -26,50 +26,55 @@ public class UserController {
         this.subscriptionService = subscriptionService;
     }
 
-    @GetMapping("/echo")
-    public String echo() {
-        return "ECHO";
-    }
-
     @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+        log.debug("Creating user: {}", user);
         UserDto createdUser = userService.createUser(user);
         return ResponseEntity.ok(createdUser);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserDto> findUserById(@PathVariable Long userId) {
-        log.info("Find user by id: {}", userId);
+        log.debug("Find user by id: {}", userId);
         UserDto user = userService.findUserById(userId);
         return ResponseEntity.ok(user);
     }
 
     @PutMapping("/{userId}")
     public ResponseEntity<UserDto> updateUser(@PathVariable Long userId, @RequestBody UserDto user) {
+        log.debug("Update user: {}", user);
         UserDto updatedUser = userService.updateUser(userId, user);
         return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        log.debug("Delete user: {}", userId);
         userService.deleteUser(userId);
         return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/{userId}/subscriptions")
-    public ResponseEntity<List<SubscriptionDto>> addSubscriptionToUser(@PathVariable Long userId, @RequestBody SubscriptionDto subscription) {
+    public ResponseEntity<List<SubscriptionDto>> addSubscriptionToUser(@PathVariable Long userId
+            , @RequestBody SubscriptionDto subscription
+    ) {
+        log.debug("Add subscription to user: {}", subscription);
         List<SubscriptionDto> newSubscriptions = subscriptionService.addSubscriptionToUser(userId, subscription);
         return ResponseEntity.ok(newSubscriptions);
     }
 
     @GetMapping("{userId}/subscriptions")
     public ResponseEntity<List<SubscriptionDto>> getUserSubscriptions(@PathVariable Long userId) {
+        log.debug("Get user subscriptions: {}", userId);
         List<SubscriptionDto> subscriptions = subscriptionService.getUserSubscriptions(userId);
         return ResponseEntity.ok(subscriptions);
     }
 
-    @DeleteMapping("/users/{userId}/subscriptions/{subscriptionId}")
-    public ResponseEntity<List<SubscriptionDto>> deleteUsersSubscription(@PathVariable Long userId, @PathVariable Long subscriptionId) {
+    @DeleteMapping("/{userId}/subscriptions/{subscriptionId}")
+    public ResponseEntity<List<SubscriptionDto>> deleteUsersSubscription(@PathVariable Long userId
+            , @PathVariable Long subscriptionId
+    ) {
+        log.debug("Delete user subscription: {}", subscriptionId);
         List<SubscriptionDto> subscriptions = subscriptionService.deleteUsersSubscription(userId, subscriptionId);
         return ResponseEntity.ok(subscriptions);
     }

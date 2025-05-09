@@ -21,7 +21,7 @@ public class Subscription {
     private Long id;
 
     @Column(name = "user_id", insertable = false, updatable = false)
-    private long userId;
+    private Long userId;
 
     @Column(name = "is_active")
     private Boolean isActive;

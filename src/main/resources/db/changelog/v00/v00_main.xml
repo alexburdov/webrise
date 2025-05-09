@@ -6,6 +6,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
 
     <include file="v00_db_init.xml" relativeToChangelogFile="true"/>
-<!--    <include file="v00_db_load.xml" relativeToChangelogFile="true"/>--> <!-- fake data ->
+<!--    <include file="v00_db_load.xml" relativeToChangelogFile="true"/>--> <!-- fake data -->
 
 </databaseChangeLog>

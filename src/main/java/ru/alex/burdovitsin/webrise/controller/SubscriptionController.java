@@ -22,6 +22,7 @@ public class SubscriptionController {
 
     @GetMapping("/top")
     public ResponseEntity<List<String>> getTopThreeSubscription() {
+        log.debug("getTopThreeSubscription start");
         List<String> topThree = subscriptionService.getTopThreeSubscription();
         return ResponseEntity.ok(topThree);
     }
